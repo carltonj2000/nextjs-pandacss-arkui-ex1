@@ -1,95 +1,51 @@
-import Image from 'next/image'
-import styles from './page.module.css'
+"use client";
+import { Menu } from "@ark-ui/react";
+import { useState } from "react";
+import { MySlider } from "./slider";
 
 export default function Home() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <div>
+      <h1>hi</h1>
+      <MySlider />
+      <button onClick={() => setIsOpen(!isOpen)}>
+        Trigger from the outside
+      </button>
+
+      <Menu.Root open={isOpen} onSelect={(id) => console.log(id)}>
+        <Menu.Trigger>Open menu</Menu.Trigger>
+        <Menu.ContextTrigger>
+          <div
+            style={{
+              width: "100%",
+              height: "20rem",
+              border: "1px solid lightgray",
+            }}
           >
-            By{' '}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
-  )
+            Some content
+          </div>
+        </Menu.ContextTrigger>
+        <Menu.Positioner>
+          <Menu.Content>
+            <Menu.ItemGroup id="group-1">
+              <Menu.ItemGroupLabel htmlFor="group-1">
+                Group 1
+              </Menu.ItemGroupLabel>
+              <Menu.Item id="share">Share...</Menu.Item>
+              <Menu.Item id="move">Move...</Menu.Item>
+            </Menu.ItemGroup>
+            <Menu.ItemGroup id="group-2">
+              <Menu.ItemGroupLabel htmlFor="group-2">
+                Group 2
+              </Menu.ItemGroupLabel>
+              <Menu.Item id="rename">Rename...</Menu.Item>
+              <Menu.Item id="delete">Delete...</Menu.Item>
+            </Menu.ItemGroup>
+          </Menu.Content>
+        </Menu.Positioner>
+      </Menu.Root>
+    </div>
+  );
 }
