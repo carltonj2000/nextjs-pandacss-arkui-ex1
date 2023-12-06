@@ -6,4 +6,6 @@
 npx create-next-app@latest
 cd nextjs-pandacss-arkui-ex1
 npm install @ark-ui/react
+npm install -D @pandacss/dev
+npx panda init --postcss
 ```
